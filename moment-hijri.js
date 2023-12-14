@@ -618,6 +618,15 @@
       hMoment Prototype
   ************************************/
 
+	//please add method isSame and important
+	hMoment.fn.isSame = function (other, units) {
+		units = normalizeUnits(units, this);
+		if (units === "iyear" || units === "imonth") {
+			return moment.fn.isSame.call(this.clone().startOf(units), other.clone().startOf(units));
+		}
+		return moment.fn.isSame.call(this, other, units);
+	};
+	
 	hMoment.fn.format = function (format) {
 		var i, replace, me = this
 
